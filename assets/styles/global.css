@@ -1,0 +1,174 @@
+@charset "utf-8";
+
+/***** global 모든페이지에 적용되는 css *****/
+html{
+  /* font-size: calc(10* (100vw/1400)); */
+  /* clamp(최소값,선호값,최대값); 최소값, 최대값을 넘기지 않음*/
+  font-size: clamp(14px,1vw,16px);
+}
+html ::-webkit-scrollbar{
+  width: 6px;
+}
+html ::-webkit-scrollbar-track{
+  background-color: transparent;
+}
+html ::-webkit-scrollbar-thumb{
+  background-color: rgba(27, 192, 178);
+  border-radius: 16px;
+  border: 1px solid rgba(0,0,0,0.1);
+}
+body{
+  font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+  font-weight: 400;
+  /* 한글 기준 */
+  word-break: break-all; /* 단어 기준으로 줄바꿈해줌*/
+  overflow-wrap: break-word;
+  line-height: 1.6;
+
+  text-align: center;
+  text-transform: uppercase;
+  
+  
+}
+.flex-wrapper{
+  display: flex;
+  align-items: center;
+}
+.main-title{
+  font-family: "Play", system-ui,sans-serif;
+  font-size: 3rem;
+  text-transform: capitalize;
+  font-weight: 700;
+  
+}
+.main-title::before{
+  content: "";
+  width: 5px;
+  height: 21px;
+  background-color: #ff8a26;
+  display: block;
+  /*position: absolute; /안보여서 블록성격을 굳이 안주더라도 어차피 비폴,애프터는 거의 쓰기때문에 포지션을 주면 보인다. 
+  bottom: 100%;
+  
+  transform: skewX(-25deg) translateX(-50%);
+  left:50%;
+  */
+  transform: skewX(-25deg);
+
+  margin: 110px auto 20px; /* 마진이 필요해서 그냥 블록을 주고 마진오토로 중앙정렬을 했다. */
+
+}
+.main-desc{
+  font-weight: 300;
+  color: #222;
+  font-size: clamp(15px, 1vw, 17px);
+  min-width: 400px;
+  max-width: 500px;
+  margin:  0 auto;
+  line-height: 1.4;
+}
+.more-btn{
+  transition: 0.3s;
+  background-color: #ff8a26;
+  color: #fff;
+  text-transform: capitalize;
+  position: absolute; /* 블록을 안주고 포지션을 어차피 써야해서 주었다. 블록을 주면 가로전체를 채우기때문에 한정된 가로값을 줘야하기때문에 포지션을 썼다.*/
+  padding: 10px 30px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.more-btn:hover{
+  border-radius: 30px;
+  background-color: #f18d00;
+}
+.ghost-btn{
+  border: 1px solid #fff;
+  padding:10px 30px ;
+  display: inline-block; /* 블록성격으로 다른 텍스트 위에 겹치지 않게 했고*/
+  margin: 30px 0 ;
+  transition: 0.3s;
+}
+.ghost-btn:hover{
+  border-radius: 30px;
+}
+/****  header ****/
+header{
+  background-color: rgba(0,0,0,0.5);
+  border-bottom: 1px solid #fff;
+  color: #fff;
+  position: fixed;
+  width: 100%;
+  z-index: 9999;
+  
+}
+header .header-wrapper{
+  /* background-color: orange; */
+  max-width: 1800px;
+  /* min-width: 1400px; */
+  margin: 0 auto;
+  height: 100px;
+  justify-content: space-between;
+}
+header .header-wrapper .logo{
+ margin: 0 10px;
+}
+header .header-wrapper .logo a{
+  display: block;
+  width: 206px; height: 100% ;
+  background: url(../images/logo.png) no-repeat 0 50% / contain; /* 로고는 잘리면 안되서 contain*/
+  text-indent: -999px;
+}
+header .header-wrapper .global-menu{
+  font-size: clamp(17px, 2vw ,19px);
+  font-weight: 600;
+  width: 50%; height: 100%;
+}
+header .header-wrapper .global-menu li{
+  height: 100%;
+  flex: 1; /* 축약형 : flex-grow:1 flex-shrink:1 flex-basis:0 */
+}
+header .header-wrapper .global-menu li:hover{
+  color:#ff8a26; /* 리셋css에 자식이 컬러 inrerit이 있기에 li에 hover를 줘도 a가 색상이 변한다. */
+}
+header .header-wrapper .global-menu li a{
+  /*display: flex;
+  align-items: center;
+  justify-content: center;*/
+  display: grid;
+  place-items: center;
+  height: 100%;
+}
+header .header-wrapper .global-utill{
+  font-size: clamp(12px, 1vw, 14px);
+  margin: 0 10px;
+}
+header .header-wrapper .global-utill a{
+  display: block;
+  margin-left: 36px ;
+  
+}
+header .header-wrapper .global-utill li:first-child a{
+  background: #ff8a26 url(../images/main_reserve_icon2_2108.png) no-repeat 15px 50% / 20px;
+  width: 140px;
+  border-radius: 30px;
+  padding: 6px 0 6px 22px;
+  font-weight: 600;
+  position: relative;
+}
+header .header-wrapper .global-utill li:not(:first-child) a::after{
+  content: "";
+  position: absolute;
+  width: 0; height: 0;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  
+  border-top: 4px solid #fff;
+  top:50%;
+  margin-left: 4px;
+  transform: translateY(-50%);
+  
+}
+.lower-case{
+  text-transform: lowercase;
+}
+/****  footer ****/
